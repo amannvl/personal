@@ -1,0 +1,121 @@
+{% extends 'web/basic.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+    {% block body %}
+	<!--================ End Header Area =================-->
+
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>Services</h2>
+                    <div class="page_link">
+                        <a href="index.html">Home</a>
+                        <a href="services.html">Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<br><br><br>
+    <!--================ End Banner Area =================-->
+
+	<!--================ Start Features Area =================-->
+	<section class="features_area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 text-center">
+					<div class="main_title">
+						<h2>service offers </h2>
+						<p>
+							This is the brief introduction of the services I provide to the clients. <br> Contact us and and talk to us about your idea/project anytime ,We'll be more than happy to answer you.<br>Also, I assure you that you won't regret your decision.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row feature_inner">
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s1.png' %}" alt="web development">
+						<h4>Web developer</h4>
+						<p>I have been developing web apps/websites for quite some time now and I have worked on different technologies to build responsive multi-platform websites. </p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s2.png' %}" alt="ui designer">
+						<h4>UI/ux design</h4>
+						<p>I am a designer that helps you design your desired website.I have experience of designing several UI models.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s3.png' %}" alt="web design">
+						<h4>Web design</h4>
+						<p>I can design your website such that you won't believe it was ever your's.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s4.png' %}" alt="seo optimization">
+						<h4>seo optimize</h4>
+						<p>Get your website seo optimized by me and get ranked higher in search results.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--================ End Features Area =================-->
+
+
+        <!--================Footer Area =================-->
+
+<script>
+
+      document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Our Services","Seo Optimization","Web Design","Web Development","AWS Deployment","Google Cloud Deployment","Heroku Deployment","Our Services","Seo Optimization","Web Design","Web Development","AWS Deployment","Google Cloud Deployment","Heroku Deployment"];
+
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h2
+     document.querySelector("h2").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+
+
+    </script>
+	{% endblock %}

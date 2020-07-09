@@ -1,0 +1,154 @@
+{% extends 'web/basic.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+    {% block body %}
+
+	<!--================ End Header Area =================-->
+
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>Contact Us</h2>
+                    <div class="page_link">
+                        <a href="/">Home</a>
+                        <a href="/contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    
+    <!--================Contact Area =================-->
+    <section class="contact_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="contact_info">
+                        <div class="info_item">
+                            <i class="lnr lnr-home"></i>
+                            <h6>Mathura (UP), INDIA</h6>
+                            <p>Mathura</p>
+                        </div>
+                        <div class="info_item">
+                            <i class="lnr lnr-phone-handset"></i>
+                            <h6><a href="#">+91 9458517339</a></h6>
+                            <p>Mon to Fri 9am to 6 pm</p>
+                        </div>
+                        <div class="info_item">
+                            <i class="lnr lnr-envelope"></i>
+                            <h6><a href="/contact">amannvl.me/contact</a></h6>
+                            <p>Send us your query anytime!</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% if message_name %}
+                <center>
+                    <h2>Thanks {{ message_name }}!</h2>
+                    <p>We received your email and will respond shortly.</p>
+                </center>
+                {% else %}
+
+                <div class="col-lg-9">{% csrf_token %}
+                    <form class="row contact_form" action="" method="post" id="contactForm" novalidate="novalidate">{% csrf_token %}
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <button type="submit" value="submit" class="primary_btn">
+                                <span>Send Message</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                {% endif %}
+
+            </div>
+            <br>
+            <br>
+
+             <section class="contact_area section_gap">
+        <div class="container">
+                    <div align="center" class="container" id='map' style='width: 80%; height: 80%; min-height: 300px; min-width: 250px;'></div>
+<script>
+  mapboxgl.accessToken = '{{ mapbox_access_token }}';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [77.67,27.49],
+    zoom: 9
+  });
+</script>
+        </div>
+             </section>
+
+        </div>
+    </section>
+    <!--================Contact Area =================-->
+
+        <!--================Footer Area =================-->
+ <script>
+
+      document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Contact Us","Let us know you better","Ask Us","Contact Us","Let us know you better","Ask Us","Contact Us","Let us know you better","Ask Us","Contact Us","Let us know you better","Ask Us"];
+
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h2
+     document.querySelector("h2").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+
+
+    </script>
+	{% endblock %}

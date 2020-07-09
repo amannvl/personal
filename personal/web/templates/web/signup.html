@@ -1,0 +1,107 @@
+{% extends 'web/basic.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+    {% block body %}
+
+
+   <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>Blog</h2>
+                    <div class="page_link">
+                        <a href="/">Home</a>
+                        <a href="/blog">Our Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+
+						<!-- Default form register -->
+<div class="container col-md-4" >
+<form class="text-center border border-light p-5"  method="post" action="">{% csrf_token %}
+
+    <p class="h1 mb-5">Sign up</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" id="firstname" name="firstname" class="form-control" placeholder="First name" required>
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input type="text" id="lastname" name="lastname" class="form-control" placeholder="Last name" required>
+        </div>
+    </div>
+
+    <!-- E-mail -->
+    <input type="email" name="email" id="email" class="form-control mb-4" placeholder="E-mail" required>
+
+<!--    username-->
+    <input type="text" id="username" name="username" class="form-control mb-4" placeholder="Username" required>
+
+    <!-- Password -->
+    <input type="password" id="pass1" name="pass1" class="form-control mb-4" placeholder="Choose a Password" required>
+
+    <input type="password" id="pass2" name="pass2" class="form-control mb-4" placeholder="Confirm Password" required>
+
+    <!-- Sign up button -->
+    <button class="primary_btn btn btn-info my-4 btn-block" type="submit">Sign Up</button>
+
+
+</form>
+    </div>
+<!-- Default form register -->
+
+
+<script>
+
+      document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Sign Up","Join Us","Get access to comments","Post Blog","Sign Up","Join Us","Get access to comments","Post Blog","Sign Up","Join Us","Get access to comments","Post Blog"];
+
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h2
+     document.querySelector("h2").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+
+
+    </script>
+	{% endblock %}

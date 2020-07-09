@@ -1,0 +1,108 @@
+{% extends 'web/basic.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+    {% block body %}
+
+	<!--================ End Header Area =================-->
+
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>About Us</h2>
+                    <div class="page_link">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+    
+   <!--================ Start About Us Area =================-->
+	<section class="about_area section_gap">
+		<div class="container">
+			<div class="row justify-content-start align-items-center">
+				<div class="col-lg-5">
+					<div class="about_img mx-5 my-5">
+						<img class="" src="{% static 'web/img/about-us.jpg' %}" width="600" height="600" alt="">
+					</div>
+				</div>
+
+				<div class="offset-lg-1 col-lg-5">
+					<div class="main_title text-left">
+						<h2>let<br>
+							me Introduce<br>
+							myself</h2>
+						<p>
+							I am a Freelancer that has made many successful projects using different technologies like <br>
+							<h4>Front-end :</h4>Python, Django, HTML5, CSS3, Bootstrap and JS <br> <h4>Back-end :</h4>Django RESTful APIs <br> <h4>Database :</h4>PostgreSQL, SQLite and MySQL
+						</p>
+						<p>
+							Always keen to learn and explore new technologies.
+							Three of my qualities that I'm so proud of is my dedication,devotion and determination towards my work.
+I am a designer/developer that takes your requirements and turn it into reality.
+I will not say that I know all the answers to your questions, but I know I'm good at finding the solutions.
+						</p>
+						<a class="primary_btn" href="{% static 'web/Resume.docx' %}"><span>Download CV</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+    <!--================ End About Us Area =================-->
+
+
+
+        <!--================Footer Area =================-->
+
+<script>
+
+      document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Contact Us","Let us know you better","Ask Us","Contact Us","Let us know you better","Ask Us","Contact Us","Let us know you better","Ask Us","Contact Us","Let us know you better","Ask Us"];
+
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h2
+     document.querySelector("h2").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+
+
+    </script>
+{% endblock %}

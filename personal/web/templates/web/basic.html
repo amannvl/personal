@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<head>
+<!--map api-->
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="keywords" content="WEB DEVELOPMENT,FREELANCER,WEB APP DEVELOPMENT,PORTFOLIO,AMANNVL,AMAN SHARMA,WEB DEVELOPER,WEB DESIGNER,UI DESIGNER,PYTHON,DJANGO,HTML,CSS,BOOTSTRAP" />
+	<meta name="description" content="I am a freelancer that makes awesome Websites or Web Apps using different technologies like Python,Django,SEO,APIs,HTML5,CSS3 and Bootstrap" />
+	<meta name="author" content="Aman Sharma, amannvl" />
+	<link rel="icon" href="{% static 'web/img/amannvl.png' %}" type="image/png">
+	<title>{% block title %}  {% endblock %}</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'web/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'web/vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'web/css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'web/vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'web/css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'web/vendors/nice-select/css/nice-select.css' %}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+</head>
+<body>
+
+
+	<!--================ Start Header Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<a class="navbar-brand logo_h" href="/"><img src="{% static 'web/img/logoimage.png' %}" alt="amannvl"></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+					 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<ul class="nav navbar-nav menu_nav justify-content-end">
+							<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+							<li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
+							<li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+							<li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+
+							{% if user.is_authenticated %}
+							<li class="nav-item"><a class="nav-link" href="/blogwrite">Write Blog</a></li>
+							<li class="nav-item"><form method="post"><a class="nav-link" href="/logout">Logout</a></form></li>
+							<li class="nav-item"><h1 class="nav-link"><b>{{ request.user }}</b></h1></li>
+							{% else %}
+							<li class="nav-item"><a class="nav-link" href="/signup">SignUp</a></li>
+							<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</nav>
+				{% for message in messages %}
+	<div class="alert alert-{{ message.tags }}" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Message !</strong> {{ message }}
+
+</div>
+	{% endfor %}
+
+		</div>
+	</header>
+
+
+ {% block body %}  {% endblock %}
+
+<!--================ Start Newsletter Area =================-->
+	<section class="newsletter_area">
+		<div class="container">
+			<div class="row justify-content-center align-items-center">
+				<div class="col-lg-12">
+					<div class="subscription_box text-center">
+						<h2 class="text-uppercase text-white">get update from anywhere</h2>
+
+
+								{% if email %}<!--    gmaps Js-->
+
+						<h2 class="text-uppercase text-white">Thanks {{ email }} ! {{ msg }}</h2>
+						                {% endif %}
+
+						<p class="text-white">
+							Get connected with us and always be the first to receive updates.
+						</p>
+
+						<div class="subcribe-form" id="mc_embed_signup">{% csrf_token %}
+							<form target="_blank" novalidate="true" action="/" method="post" class="subscription relative">{% csrf_token %}
+								<input name="email" id="email" placeholder="Email address" onfocus="this.placeholder = 'Email address'" onblur="this.placeholder = 'Email address'" required="" type="email">
+								<button class="primary-btn hover d-inline">Get Started</button>
+								<div class="info"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Newsletter Area =================-->
+	<!--================ Start Footer Area =================-->
+
+	<footer class="footer_area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="footer_top flex-column">
+                        <div class="footer_logo">
+                            <a href="https://www.amannvl.me/">
+                                <img src="{% static 'web/img/logo.jpg' %}" alt="">
+                            </a>
+                            <h4>Follow Me</h4>
+                        </div>
+                        <div class="footer_social">
+                            <a href="https://github.com/amannvl"><i class="fa fa-github"></i></a>
+                            <a href="https://twitter.com/amannvl"><i class="fa fa-twitter"></i></a>
+                            <a href="https://www.linkedin.com/in/amannvl/"><i class="fa fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row footer_bottom justify-content-center">
+                <p class="col-lg-8 col-sm-12 footer-text">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://amannvl.me" target="_blank">amannvl</a>
+</p>
+            </div>
+        </div>
+    </footer>
+    <!--================End Footer Area =================-->
+
+<script>
+	 {% block script %}  {% endblock %}
+
+</script>
+
+</body>
+
+</html>

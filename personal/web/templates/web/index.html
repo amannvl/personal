@@ -1,0 +1,214 @@
+{% extends 'web/basic.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+    {% block body %}
+
+
+	<!--================ End Header Area =================-->
+
+	<!--================ Start Home Banner Area =================-->
+	<section class="home_banner_area" style="background-color: white;">
+		<div class="banner_inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-7">
+						<div class="banner_content">
+								<div class="typewriter">
+								<h2>Web Developer</h2>
+							</div>
+							<h3 class="text-uppercase">Hell0</h3>
+							<h1 class="text-uppercase">i am Aman Sharma</h1>
+							<div class="d-flex align-items-center">
+								<a class="primary_btn" href="/contact"><span>Hire Me</span></a>
+								<a class="primary_btn tr-bg" href="{% static 'web/Resume.docx' %}"><span>Get CV</span></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<div class="home_right_img">
+							<img class="" src="{% static 'web/img/banner/home-right.png' %}" alt="">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Home Banner Area =================-->
+
+	<!--================ Start About Us Area =================-->
+	<section class="about_area section_gap">
+		<div class="container">
+			<div class="row justify-content-start align-items-center">
+				<div class="col-lg-5">
+					<div class="about_img mx-5 my-5">
+						<img class="" src="{% static 'web/img/about-us.jpg' %}" width="600" height="600" alt="">
+					</div>
+				</div>
+
+				<div class="offset-lg-1 col-lg-5">
+					<div class="main_title text-left">
+						<h2>let<br>
+							me Introduce<br>
+							myself</h2>
+						<p>
+							I am a Freelancer that has made many successful projects using different technologies like <br>
+							<h4>Front-end :</h4>Python, Django, HTML5, CSS3, Bootstrap and JS <br> <h4>Back-end :</h4>Django RESTful APIs <br> <h4>Database :</h4>PostgreSQL, SQLite and MySQL
+						</p>
+						<p>
+							Always keen to learn and explore new technologies.
+							Three of my qualities that I'm so proud of is my dedication,devotion and determination towards my work.
+I am a designer/developer that takes your requirements and turn it into reality.
+I will not say that I know all the answers to your questions, but I know I'm good at finding the solutions.
+						</p>
+						<a class="primary_btn" href="{% static 'web/Resume.docx' %}"><span>Download CV</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End About Us Area =================-->
+
+
+
+	<!--================ Start Features Area =================-->
+	<section class="features_area">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-8 text-center">
+					<div class="main_title">
+						<h2>service offers </h2>
+						<p>
+							This is the brief introduction of the services I provide to the clients. <br> Contact us and and talk to us about your idea/project anytime ,We'll be more than happy to answer you.<br>Also, I assure you that you won't regret your decision.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row feature_inner">
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s1.png' %}" alt="web development">
+						<h4>Web developer</h4>
+						<p>I have been developing web apps/websites for quite some time now and I have worked on different technologies to build responsive multi-platform websites. </p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s2.png' %}" alt="ui designer">
+						<h4>UI/ux design</h4>
+						<p>I am a designer that helps you design your desired website.I have experience of designing several UI models.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s3.png' %}" alt="web design">
+						<h4>Web design</h4>
+						<p>I can design your website such that you won't believe it was ever your's.</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="feature_item">
+						<img src="{% static 'web/img/services/s4.png' %}" alt="seo optimization">
+						<h4>seo optimize</h4>
+						<p>Get your website seo optimized by me and get ranked higher in search results.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Features Area =================-->
+
+	<!--================Start Portfolio Area =================-->
+	<section class="portfolio_area" id="portfolio">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="main_title text-left">
+						<h2>quality work <br>
+							Recently done project </h2>
+					</div>
+				</div>
+			</div>
+
+	
+			<div class="filters-content">
+				<div class="row portfolio-grid justify-content-center">
+
+
+                    {% for i in projects %}
+
+					<div class="col-lg-4 col-md-6 all latest">
+						<div class="portfolio_box">
+							<div class="single_portfolio">
+								<img class="img-fluid w-100" src="{{ i.image_url.url }}" alt="{{ i.title }}">
+								<div class="overlay"></div>
+								<a href="{{ i.image_url.url }}" class="img-gal">
+									<div class="icon">
+										<span class="lnr lnr-cross"></span>
+									</div>
+								</a>
+							</div>
+							<div class="short_info">
+								<h4><a href="/{{ i.p_id }}">{{ i.title }}</a></h4>
+								<p>{{ i.subtitle }}o</p>
+							</div>
+						</div>
+					</div>
+                    {% endfor %}
+
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Portfolio Area =================-->
+
+	<!--================Footer Area =================-->
+<script>
+
+      document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Web Developer","UI Designer","SEO","Web Development","Web Developer","UI Designer","SEO","Web Development","Web Developer","UI Designer","SEO","Web Development"];
+
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h2
+     document.querySelector("h2").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+
+
+    </script>
+	{% endblock %}

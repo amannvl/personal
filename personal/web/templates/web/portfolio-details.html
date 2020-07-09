@@ -1,0 +1,112 @@
+{% extends 'web/basic.html' %}
+{% block title %} {{ post.title }} {% endblock %}
+{% load static %}
+    {% block body %}
+
+	<!--================ End Header Area =================-->
+
+    <!--================ Start Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h1>Portfolio Details</h1>
+                    <h2>Development Projects</h2>
+                    <div class="page_link">
+                        <a href="/">Home</a>
+                        <a href="/portfolio">Portfolio</a>
+                        <a href="/{{ post.p_id }}">Portfolio Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================ End Banner Area =================-->
+
+	<!--================Start Portfolio Details Area =================-->
+	<section class="portfolio_details_area section_gap">
+        <div class="container">
+            <div class="portfolio_details_inner">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="left_img">
+                            <img class="img-fluid" src="{{ post.image_url.url }}" alt="{{ post.title }}">
+                        </div>
+                    </div>
+                    <div class="offset-lg-1 col-lg-5">
+                        <div class="portfolio_right_text mt-30">
+                            <h3 class="text-uppercase">{{ post.title }}</h3>
+                            <p>{{ post.keyword }}</p>
+                            <h4>
+                                {{ post.subtitle }}
+                            </h4>
+                            <h4>{{ post.language }}</h4>
+                            <p>{{ post.framework }}</p>
+                            <ul class="list">
+                                <li><span>Rating</span>: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                        class="fa fa-star"></i></li>
+                                <li><span>Client</span>: {{ post.client }}</li>
+                                <li><span>Website</span>: {{ post.web_url }}</li>
+                                <li><span>Github</span>: {{ post.github_url }}</li>
+                                <li><span>Dated</span>: {{ post.date }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p>{{ post.desc }}</p>
+
+            </div>
+        </div>
+    </section>
+    <!--================End Portfolio Details Area =================-->
+
+    <!--================Footer Area =================-->
+
+<script>
+
+      document.addEventListener('DOMContentLoaded',function(event){
+  // array with texts to type in typewriter
+  var dataText = [ "Portfolio Details","Deployed Projects","Portfolio Details","Deployed Projects","Portfolio Details","Deployed Projects"];
+
+  // type one text in the typwriter
+  // keeps calling itself until the text is finished
+  function typeWriter(text, i, fnCallback) {
+    // chekc if text isn't finished yet
+    if (i < (text.length)) {
+      // add next character to h2
+     document.querySelector("h2").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+
+      // wait for a while and call this function again for next character
+      setTimeout(function() {
+        typeWriter(text, i + 1, fnCallback)
+      }, 100);
+    }
+    // text finished, call callback if there is a callback function
+    else if (typeof fnCallback == 'function') {
+      // call callback after timeout
+      setTimeout(fnCallback, 700);
+    }
+  }
+  // start a typewriter animation for a text in the dataText array
+   function StartTextAnimation(i) {
+     if (typeof dataText[i] == 'undefined'){
+        setTimeout(function() {
+          StartTextAnimation(0);
+        }, 20000);
+     }
+     // check if dataText[i] exists
+    if (i < dataText[i].length) {
+      // text exists! start typewriter animation
+     typeWriter(dataText[i], 0, function(){
+       // after callback (and whole text has been animated), start next text
+       StartTextAnimation(i + 1);
+     });
+    }
+  }
+  // start the text animation
+  StartTextAnimation(0);
+});
+
+
+    </script>
+	{% endblock %}

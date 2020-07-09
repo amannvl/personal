@@ -1,0 +1,90 @@
+{% extends 'web/basic.html' %}
+{% block title %} Home {% endblock %}
+{% load static %}
+    {% block body %}
+
+ <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>About Us</h2>
+                    <div class="page_link">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!--write blog form-->
+
+<div class="container">
+<div class="section-top-border">
+				<div class="row">
+					<div class="col-lg-8 col-md-8">{% csrf_token %}
+						<h3 class="mb-30 title_color">Form Element</h3>
+                        <form method="POST" class="post-form">{% csrf_token %}
+							<div class="mt-10">
+								<input type="text" name="title" id="title" placeholder="Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Title'" required class="single-input">
+							</div>
+							<div class="mt-10">
+								<input type="text" name="subtitle" id="subtitle" placeholder="Subtitle" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subtitle'" required class="single-input">
+							</div>
+							<div class="mt-10">
+								<input type="text" name="specialmsg" placeholder="Quote" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Quote'" required class="single-input">
+							</div>
+							<div class="mt-10">
+								<input type="url" name="referral_url" placeholder="Referral Links" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Referral Links'" required class="single-input">
+							</div>
+<!--							<div class="mt-10">-->
+<!--								<input type="text" name="user" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User'" required class="single-input-primary">-->
+<!--							</div>-->
+							<div class="mt-10">
+								<input type="text" name="category" placeholder="Category" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Category'" required class="single-input-accent">
+							</div>
+							<div class="mt-10 single-textarea">
+								<input type="text" name="desc" placeholder="Description" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Description'" required class="single-input-secondary">
+							</div>
+                            <div class="mt-10">
+								<input type="datetime-local" name="date" placeholder="Date" onfocus="this.placeholder = 'Date'" onblur="this.placeholder = 'Date'" required class="single-input-secondary">
+							</div>
+                            <div class="mt-10">
+								<input type="text" name="keyword" placeholder="Keywords" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Keywords'" required class="single-input-secondary">
+							</div>
+
+
+                                <div class="col-md-12 text-center mt-5">
+                            <button type="submit" value="submit" class="primary_btn">
+                                <span>Post Blog</span>
+                            </button>
+                        </div>
+                        </form>
+                    </div>
+
+
+			<div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget author_widget">
+                            <img class="author_img rounded-circle" src="{% static 'web/img/blog/author.jpg' %}" width="150" height="150" alt="">
+                            <h4>Aman Sharma</h4>
+                            <p>Web Developer/Blogger</p>
+                            <div class="social_icon">
+                                <a href="https://www.linkedin.com/in/amannvl/"><i class="fa fa-linkedin"></i></a>
+                                <a href="https://twitter.com/amannvl"><i class="fa fa-twitter"></i></a>
+                                <a href="https://github.com/amannvl"><i class="fa fa-github"></i></a>
+                                <a href="https://amannvl.me/"><i class="fa fa-globe"></i></a>
+                            </div>
+                            <p>I am a Freelancer that has made many successful projects using different technologies like <br>
+							<h4>Front-end :</h4>Python, Django, HTML5, CSS3, Bootstrap and JS <br> <h4>Back-end :</h4>Django RESTful APIs <br> <h4>Database :</h4>PostgreSQL, SQLite and MySQL</p>
+                            <div class="br"></div>
+                        </aside>
+                    </div>
+            </div>
+
+
+
+				</div>
+			</div>
+</div>
+{% endblock %}
